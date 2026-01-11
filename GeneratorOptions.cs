@@ -12,7 +12,11 @@ enum OutputFormat
 enum FixtureMode
 {
     Vectors,
-    Ops
+    Ops,
+    Bitwise,
+    Pow,
+    ModPow,
+    ModInverse
 }
 
 readonly struct GeneratorOptions
@@ -38,6 +42,22 @@ readonly struct GeneratorOptions
             {
                 mode = FixtureMode.Ops;
             }
+            else if (arg.Equals("--bitwise", StringComparison.OrdinalIgnoreCase) || arg.Equals("bitwise", StringComparison.OrdinalIgnoreCase))
+            {
+                mode = FixtureMode.Bitwise;
+            }
+            else if (arg.Equals("--pow", StringComparison.OrdinalIgnoreCase) || arg.Equals("pow", StringComparison.OrdinalIgnoreCase))
+            {
+                mode = FixtureMode.Pow;
+            }
+            else if (arg.Equals("--modpow", StringComparison.OrdinalIgnoreCase) || arg.Equals("modpow", StringComparison.OrdinalIgnoreCase))
+            {
+                mode = FixtureMode.ModPow;
+            }
+            else if (arg.Equals("--modinv", StringComparison.OrdinalIgnoreCase) || arg.Equals("modinv", StringComparison.OrdinalIgnoreCase))
+            {
+                mode = FixtureMode.ModInverse;
+            }
             else if (arg.Equals("--vectors", StringComparison.OrdinalIgnoreCase) || arg.Equals("vectors", StringComparison.OrdinalIgnoreCase))
             {
                 mode = FixtureMode.Vectors;
@@ -48,6 +68,22 @@ readonly struct GeneratorOptions
                 if (value.Equals("ops", StringComparison.OrdinalIgnoreCase))
                 {
                     mode = FixtureMode.Ops;
+                }
+                else if (value.Equals("bitwise", StringComparison.OrdinalIgnoreCase))
+                {
+                    mode = FixtureMode.Bitwise;
+                }
+                else if (value.Equals("pow", StringComparison.OrdinalIgnoreCase))
+                {
+                    mode = FixtureMode.Pow;
+                }
+                else if (value.Equals("modpow", StringComparison.OrdinalIgnoreCase))
+                {
+                    mode = FixtureMode.ModPow;
+                }
+                else if (value.Equals("modinv", StringComparison.OrdinalIgnoreCase))
+                {
+                    mode = FixtureMode.ModInverse;
                 }
                 else if (value.Equals("vectors", StringComparison.OrdinalIgnoreCase))
                 {

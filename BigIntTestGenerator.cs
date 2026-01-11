@@ -11,6 +11,22 @@ class BigIntTestGeneratorClass
         {
             BigIntOpsFixtureGenerator.WriteOps();
         }
+        else if (options.Mode == FixtureMode.Bitwise)
+        {
+            BigIntBitwiseFixtureGenerator.WriteBitwise();
+        }
+        else if (options.Mode == FixtureMode.Pow)
+        {
+            BigIntPowFixtureGenerator.WritePow();
+        }
+        else if (options.Mode == FixtureMode.ModPow)
+        {
+            BigIntModPowFixtureGenerator.WriteModPow();
+        }
+        else if (options.Mode == FixtureMode.ModInverse)
+        {
+            BigIntModInverseFixtureGenerator.WriteModInverse();
+        }
         else
         {
             BigIntVectorFixtureGenerator.WriteVectors(options.Format);
