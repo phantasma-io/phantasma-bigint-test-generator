@@ -61,6 +61,7 @@ static class BigIntOpsFixtureGenerator
     {
         var two = new BigInteger(2);
         var pow31 = BigInteger.Pow(two, 31);
+        var pow32 = BigInteger.Pow(two, 32);
         var pow63 = BigInteger.Pow(two, 63);
         var pow64 = BigInteger.Pow(two, 64);
         var pow127 = BigInteger.Pow(two, 127);
@@ -71,22 +72,35 @@ static class BigIntOpsFixtureGenerator
             // Small signed values + power-of-two edges to hit carry/sign transitions.
             new OpCase(0, 1, 0),
             new OpCase(1, 1, 1),
+            new OpCase(-1, 1, 1),
+            new OpCase(1, -1, 1),
+            new OpCase(-1, -1, 1),
+            new OpCase(-1, 2, 1),
+            new OpCase(-3, 2, 1),
+            new OpCase(5, -2, 1),
+            new OpCase(-5, -2, 1),
             new OpCase(2, 3, 1),
             new OpCase(2, -3, 1),
             new OpCase(-2, 3, 1),
             new OpCase(7, 5, 2),
             new OpCase(-7, 5, 2),
             new OpCase(7, -5, 2),
+            new OpCase(5, 20, 2),
             new OpCase(123456789, 1000, 5),
             new OpCase(123456789, -1000, 5),
             new OpCase(-123456789, 1000, 5),
             new OpCase(-123456789, -1000, 5),
             new OpCase(pow31 - 1, 12345, 16),
             new OpCase(pow31, 12345, 16),
+            new OpCase(pow32 - 1, 65535, 32),
+            new OpCase(pow32, 65535, 32),
+            new OpCase(pow32 + 1, 65535, 32),
+            new OpCase(-pow32 + 1, 65535, 32),
             new OpCase(pow63 - 1, pow31 - 1, 31),
             new OpCase(pow63, 97, 32),
             new OpCase(-pow63, 97, 32),
             new OpCase(pow64, 5, 33),
+            new OpCase(pow64 + 1, -5, 33),
             new OpCase(pow127 - 1, 17, 64),
             new OpCase(pow128, BigInteger.Parse("12345678901234567890"), 65),
             new OpCase(BigInteger.Parse("783269426398462946992340273"), 1234567, 17),
